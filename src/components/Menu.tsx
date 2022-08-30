@@ -1,6 +1,6 @@
 import { Button, AppBar, Toolbar, Typography } from '@mui/material';
 import SearchContact from './SearchContact';
-import { useActions } from '../hooks/useActions';
+import useActions from '../hooks/useActions';
 
 interface MenuProps {
   searchHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;

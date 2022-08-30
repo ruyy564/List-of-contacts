@@ -4,11 +4,12 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from '../muiComponent/Search';
-interface MenuProps {
+
+interface SearchContactProps {
   searchHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchContact = ({ searchHandler }: MenuProps) => {
+const SearchContact = ({ searchHandler }: SearchContactProps) => {
   return (
     <Search>
       <SearchIconWrapper>

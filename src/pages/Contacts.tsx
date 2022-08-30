@@ -1,35 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import useForm from '../hooks/useForm';
+import useActions from '../hooks/useActions';
+import useSearch from '../hooks/useSearch';
+import useModals from '../hooks/useModal';
 import { Button, Typography, Container, Stack } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Menu from '../components/Menu';
-import useModals from '../hooks/useModal';
 import Contact from '../components/Contact';
 import FormContact from '../components/FormContact';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import useForm from '../hooks/useForm';
-import { getContacts } from '../store/actions/actionCreatorContact';
-import { IContact } from '../types/contact';
 
 const Contacts = () => {
+  const { getContacts } = useActions();
   const { open, handleClose, handleOpen } = useModals();
-  const { contacts } = useTypedSelector((state) => state.contacts);
   const { form, saveContact, changeFormHandler, initForm } = useForm();
-  const [query, setQuery] = useState('');
-  const dispatch = useDispatch();
-
-  const runSearch = (): IContact[] => {
-    return [
-      ...contacts.filter((contact) => contact.name.includes(query.trim())),
-    ];
-  };
-
-  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
+  const { searchHandler, runSearch } = useSearch();
 
   useEffect(() => {
-    dispatch(getContacts());
+    getContacts();
   }, []);
 
   return (

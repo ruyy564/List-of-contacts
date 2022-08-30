@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useActions } from '../hooks/useActions';
+import useActions from '../hooks/useActions';
 import { IContact } from '../types/contact';
 
 const useForm = () => {

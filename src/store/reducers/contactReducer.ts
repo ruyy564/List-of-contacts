@@ -27,7 +27,6 @@ const contactRenderer = (
 
         return { ...contact };
       });
-
       return { ...state, contacts };
     case ContactAction.DELETE_CONTACT:
       const filtered = state.contacts.filter(

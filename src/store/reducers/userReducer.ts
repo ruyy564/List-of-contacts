@@ -1,7 +1,11 @@
 import { IUserState, IUserAction, UserAction } from '../../types/user';
+import { KEY_USER } from '../../config/constants';
+
+const user = localStorage.getItem(KEY_USER);
+const initUser = user ? JSON.parse(user) : null;
 
 const initialState: IUserState = {
-  user: null,
+  user: initUser,
   loading: false,
   error: null,
 };

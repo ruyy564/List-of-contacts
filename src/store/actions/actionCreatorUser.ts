@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { UserAction } from '../../types/user';
+import { URL, KEY_USER } from '../../config/constants';
 
 interface IUser {
   email: string;
@@ -11,14 +12,14 @@ export const fetchLogin = (payload: IUser) => async (dispatch: Dispatch) => {
   try {
     dispatch({ type: UserAction.FETCH_LOGIN });
 
-    const response = await axios.post('http://localhost:3001/login', payload);
+    const response = await axios.post(`${URL}login`, payload);
     const { accessToken, user } = response.data;
 
     dispatch({
       type: UserAction.FETCH_LOGIN_SUCCESS,
       payload: { ...user, accessToken },
     });
-    localStorage.setItem('user', JSON.stringify({ ...user, accessToken }));
+    localStorage.setItem(KEY_USER, JSON.stringify({ ...user, accessToken }));
   } catch (error) {
     dispatch({
       type: UserAction.FETCH_LOGIN_ERROR,
@@ -28,7 +29,7 @@ export const fetchLogin = (payload: IUser) => async (dispatch: Dispatch) => {
 };
 
 export const fetchLogout = () => {
-  localStorage.removeItem('user');
+  localStorage.removeItem(KEY_USER);
 
   return {
     type: UserAction.FETCH_LOGOUT,
