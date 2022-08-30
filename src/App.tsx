@@ -1,12 +1,13 @@
-import {Routes,Route} from 'react-router-dom'
-import Contacts from './pages/Contacts'
-import Auth from './pages/Auth'
+import { Routes, Route } from 'react-router-dom';
+import Contacts from './pages/Contacts';
+import ProtectedRouter from './routes/ProtectedRouter';
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Auth/>}/>
-      <Route path='/auth' element={<Contacts/>}/>
+      <Route element={<ProtectedRouter />}>
+        <Route path="*" element={<Contacts />} />
+      </Route>
     </Routes>
   );
 }
