@@ -11,7 +11,7 @@ export enum ContactAction {
 }
 
 export interface IContact {
-  id: number;
+  id: number | null;
   name: string;
   email: string;
 }

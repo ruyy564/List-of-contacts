@@ -22,7 +22,7 @@ export const fetchLogin = (payload: IUser) => async (dispatch: Dispatch) => {
   } catch (error) {
     dispatch({
       type: UserAction.FETCH_LOGIN_ERROR,
-      payload: 'Login/password is incorrect',
+      payload: 'Email or password is incorrect',
     });
   }
 };

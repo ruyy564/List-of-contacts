@@ -1,56 +1,58 @@
-import { useState } from 'react';
-import useActions from './useActions';
+import useActions from '../hooks/useActions';
+import { useEffect, useState } from 'react';
 import { IContact } from '../types/contact';
-import useValidateFormContact from './useValidateFormContact';
+import useInput from '../hooks/useInput';
+import { emailVal, nameVal } from '../helpers/validator';
+import useValidate from '../hooks/useValidate';
 
-const useFormContact = () => {
-  const [form, setForm] = useState({ name: '', email: '' });
+const useFormContact = (handleClose: () => void, initState: IContact) => {
+  const { addContact, editContact } = useActions();
   const [editId, setEditId] = useState<null | number>(null);
-  const { editContact, addContact } = useActions();
-  const { clearError, isValidateForm, errorValidation } =
-    useValidateFormContact();
+  const email = useInput();
+  const name = useInput();
+  const emailValidator = useValidate(email.value, emailVal);
+  const nameValidator = useValidate(name.value, nameVal);
 
-  const changeFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({
-      ...prev,
-      [event.target.id]: event.target.value,
-    }));
+  useEffect(() => {
+    email.setValue(initState.email);
+    name.setValue(initState.name);
+    setEditId(initState.id);
+  }, [initState, handleClose]);
+
+  const clearErrors = () => {
+    emailValidator.clearErrors();
+    nameValidator.clearErrors();
+  };
+
+  const closeForm = () => {
+    handleClose();
+    clearErrors();
   };
 
   const saveContact = () => {
-    clearError();
+    clearErrors();
+    const isEmailValid = emailValidator.validate();
+    const isNameValid = nameValidator.validate();
 
-    if (!isValidateForm(form)) {
+    if (!isEmailValid || !isNameValid) {
       return;
     }
 
     if (editId) {
-      editContact({ ...form, id: editId });
+      editContact({ email: email.value, name: name.value, id: editId });
     } else {
-      addContact({ ...form, id: Date.now() });
+      addContact({ email: email.value, name: name.value, id: Date.now() });
     }
-
-    clearForm();
-  };
-
-  const initForm = (contact: IContact) => {
-    setForm({ ...contact });
-    setEditId(contact.id);
-  };
-
-  const clearForm = () => {
-    setForm({ name: '', email: '' });
-    setEditId(null);
+    closeForm();
   };
 
   return {
-    form,
+    closeForm,
+    nameValidator,
+    emailValidator,
+    name,
+    email,
     saveContact,
-    changeFormHandler,
-    initForm,
-    clearForm,
-    errorValidation,
-    editId,
   };
 };
 

@@ -1,58 +1,48 @@
 import { Button, TextField, Typography, ButtonGroup } from '@mui/material';
 import Modal from './Modal';
+import useFormContact from '../hooks/useFormContact';
+import { IContact } from '../types/contact';
 
 interface FormContactProps {
   open: boolean;
-  form: any;
-  errors: string[];
+  initState: IContact;
   handleClose: () => void;
-  saveContact: () => void;
-  changeFormHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormContact = ({
-  open,
-  handleClose,
-  form,
-  errors,
-  changeFormHandler,
-  saveContact,
-}: FormContactProps) => {
+const FormContact = ({ open, handleClose, initState }: FormContactProps) => {
+  const { closeForm, nameValidator, emailValidator, name, email, saveContact } =
+    useFormContact(handleClose, initState);
+
   return (
-    <Modal open={open} handleClose={handleClose}>
-      {errors.map((error, index) => (
-        <Typography key={index} component="h1" variant="h5" color="error">
-          {error}
-        </Typography>
-      ))}
+    <Modal open={open} handleClose={closeForm}>
       <Typography id="modal-modal-title" variant="h6" component="h2">
         Input a data about new contact
       </Typography>
-
+      <Typography component="h5" variant="h6" color="error">
+        {nameValidator.errors.join('/')}
+      </Typography>
       <TextField
         id="name"
         label="Name"
         fullWidth
-        value={form.name}
-        onChange={changeFormHandler}
+        value={name.value}
+        onChange={name.changeHandler}
       />
+      <Typography component="h5" variant="h6" color="error">
+        {emailValidator.errors.join('/')}
+      </Typography>
       <TextField
         id="email"
         label="Email"
         fullWidth
-        value={form.email}
-        onChange={changeFormHandler}
+        value={email.value}
+        onChange={email.changeHandler}
       />
       <ButtonGroup>
         <Button variant="contained" fullWidth onClick={saveContact}>
           Accept
         </Button>
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={handleClose}
-          color="error"
-        >
+        <Button variant="contained" fullWidth onClick={closeForm} color="error">
           Cancel
         </Button>
       </ButtonGroup>

@@ -6,39 +6,30 @@ import { IContact } from '../types/contact';
 interface ContactProps {
   contact: IContact;
   handleOpen: () => void;
-  initForm: (contact: IContact) => void;
   deleteContact: (contact: IContact) => void;
 }
 
-const Contact = ({
-  contact,
-  handleOpen,
-  initForm,
-  deleteContact,
-}: ContactProps) => {
+const Contact = ({ contact, handleOpen, deleteContact }: ContactProps) => {
   return (
     <Stack
       direction="row"
-      spacing={2}
       justifyContent={'space-between'}
       alignItems={'center'}
-      p={2}
       mt={2}
     >
       <Typography variant="h6" component="span">
         {contact.name}
       </Typography>
-      <Typography variant="h6" component="span">
+      <Typography variant="h6" component="span" color="primary">
         {contact.email}
       </Typography>
       <ButtonGroup>
-        <ButtonEdit
+        <ButtonEdit onClick={handleOpen} />
+        <ButtonDelete
           onClick={() => {
-            initForm(contact);
-            handleOpen();
+            deleteContact(contact);
           }}
         />
-        <ButtonDelete onClick={deleteContact.bind(null, contact)} />
       </ButtonGroup>
     </Stack>
   );

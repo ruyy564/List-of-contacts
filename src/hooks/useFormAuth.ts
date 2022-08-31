@@ -1,28 +1,28 @@
-import { useState } from 'react';
+import useInput from '../hooks/useInput';
+import { emailVal, passwordVal } from '../helpers/validator';
+import useValidate from '../hooks/useValidate';
 import useActions from '../hooks/useActions';
-import useValidateFormAuth from './useValidateFormAuth';
+import useTypedSelector from '../hooks/useTypedSelector';
 
 const useFormAuth = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
   const { fetchLogin } = useActions();
-  const { clearError, isValidateForm, errorValidation } = useValidateFormAuth();
+  const { error } = useTypedSelector((state) => state.auth);
+  const email = useInput('');
+  const password = useInput('');
 
-  const changeFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({
-      ...prev,
-      [event.target.id]: event.target.value,
-    }));
-  };
+  const emailValidator = useValidate(email.value, emailVal);
+  const passwordValidator = useValidate(password.value, passwordVal);
 
   const login = () => {
-    clearError();
+    emailValidator.clearErrors();
+    passwordValidator.clearErrors();
 
-    if (isValidateForm({ ...form })) {
-      fetchLogin(form);
-    }
+    emailValidator.validate();
+    passwordValidator.validate();
+
+    fetchLogin({ email: email.value, password: password.value });
   };
-
-  return { form, changeFormHandler, login, errorValidation };
+  return { error, emailValidator, passwordValidator, email, password, login };
 };
 
 export default useFormAuth;
