@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { isEmpty, testRegExp } from '../helpers/stringMethods';
-import { EMAIL_REG_EXP } from '../config/constants';
-import { Validate } from '../types/validate';
+import {
+  EMAIL_REG_EXP,
+  MESSAGE_EMAIL_INCORRECT,
+  MESSAGE_FIELD_REQUIRED,
+} from '../config/constants';
+import { Validator } from '../types/validation';
+import { IValidators } from '../types/validation';
 
-const useValidate = (value: string, validators: any) => {
+const useValidate = (value: string, validators: IValidators) => {
   const [errors, setErrors] = useState<string[]>([]);
 
   const addError = (message: string) => {
@@ -19,16 +24,16 @@ const useValidate = (value: string, validators: any) => {
 
     for (let validator in validators) {
       switch (validator) {
-        case Validate.IS_EMPTY:
+        case Validator.IS_EMPTY:
           if (validators[validator] && isEmpty(value)) {
-            addError('Field is required');
+            addError(MESSAGE_FIELD_REQUIRED);
             isValid = false;
           }
 
           break;
-        case Validate.EMAIL:
+        case Validator.EMAIL:
           if (validators[validator] && testRegExp(value, EMAIL_REG_EXP)) {
-            addError('Email is incorrect');
+            addError(MESSAGE_EMAIL_INCORRECT);
             isValid = false;
           }
 

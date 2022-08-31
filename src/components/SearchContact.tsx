@@ -3,7 +3,7 @@ import {
   Search,
   SearchIconWrapper,
   StyledInputBase,
-} from '../muiComponent/Search';
+} from '../muiStyles/Search';
 
 interface SearchContactProps {
   searchHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;

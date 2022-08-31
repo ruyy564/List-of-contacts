@@ -2,7 +2,7 @@
 
 ## Version utils
 
-### nmp - 8.18.0
+### npm - 8.18.0
 
 ### node - 18.8.0
 
@@ -14,11 +14,15 @@
 
 ## URL API with mock data http://localhost:3001/
 
-(post) /login - authorization username
-(get) /contacts -get list of contacts
-(post) /contacts - add a new contacts
-(put) /contact/id - update info about contact
-(delete) /contact/id - delete contact
+### (post) /login - authorization username
+
+### (get) /contacts -get list of contacts
+
+### (post) /contacts - add a new contacts
+
+### (put) /contact/id - update info about contact
+
+### (delete) /contact/id - delete contact
 
 ## Test username
 

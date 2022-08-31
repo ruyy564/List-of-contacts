@@ -14,19 +14,24 @@ import Menu from '../components/Menu';
 import Contact from '../components/Contact';
 import FormContact from '../components/FormContact';
 import useTypedSelector from '../hooks/useTypedSelector';
+import { IContact } from '../types/contact';
 
 const Contacts = () => {
   const { getContacts, deleteContact } = useActions();
   const { open, handleClose, handleOpen } = useModals();
   const { runSearch, searchHandler } = useSearch();
   const { error, loading } = useTypedSelector((state) => state.contacts);
-  const [initState, setInitState] = useState({ name: '', email: '', id: null });
+  const [initState, setInitState] = useState<IContact>({
+    name: '',
+    email: '',
+    id: null,
+  });
 
   useEffect(() => {
     getContacts();
   }, []);
 
-  const openForm = (initState: any) => {
+  const openForm = (initState: IContact) => {
     setInitState(initState);
     handleOpen();
   };

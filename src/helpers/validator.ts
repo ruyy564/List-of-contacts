@@ -1,14 +1,14 @@
-import { Validate } from '../types/validate';
+import { Validator } from '../types/validation';
 
 export const emailVal = {
-  [Validate.IS_EMPTY]: true,
-  [Validate.EMAIL]: true,
+  [Validator.IS_EMPTY]: true,
+  [Validator.EMAIL]: true,
 };
 
 export const passwordVal = {
-  [Validate.IS_EMPTY]: true,
+  [Validator.IS_EMPTY]: true,
 };
 
 export const nameVal = {
-  [Validate.IS_EMPTY]: true,
+  [Validator.IS_EMPTY]: true,
 };

@@ -1,5 +1,5 @@
 import { Modal, Stack } from '@mui/material';
-import { style } from '../muiComponent/Style';
+import { style } from '../muiStyles/StyleModal';
 
 interface ModalContactProps {
   children: React.ReactNode;

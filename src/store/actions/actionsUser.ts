@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { UserAction } from '../../types/user';
-import { URL, KEY_USER } from '../../config/constants';
+import {
+  URL,
+  KEY_USER,
+  MESSAGE_EMAIL_PASSWORD_INCORRECT,
+} from '../../config/constants';
 
 interface IUser {
   email: string;
@@ -22,7 +26,7 @@ export const fetchLogin = (payload: IUser) => async (dispatch: Dispatch) => {
   } catch (error) {
     dispatch({
       type: UserAction.FETCH_LOGIN_ERROR,
-      payload: 'Email or password is incorrect',
+      payload: MESSAGE_EMAIL_PASSWORD_INCORRECT,
     });
   }
 };

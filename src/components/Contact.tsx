@@ -17,11 +17,20 @@ const Contact = ({ contact, handleOpen, deleteContact }: ContactProps) => {
       alignItems={'center'}
       mt={2}
     >
-      <Typography variant="h6" component="span">
-        {contact.name}
+      <Typography
+        variant="h6"
+        component="h6"
+        style={{ wordWrap: 'break-word', width: '20%' }}
+      >
+        name:{contact.name}
       </Typography>
-      <Typography variant="h6" component="span" color="primary">
-        {contact.email}
+      <Typography
+        variant="h6"
+        component="h6"
+        color="primary"
+        style={{ wordWrap: 'break-word', width: '20%' }}
+      >
+        email:{contact.email}
       </Typography>
       <ButtonGroup>
         <ButtonEdit onClick={handleOpen} />

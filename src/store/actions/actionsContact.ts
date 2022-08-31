@@ -1,7 +1,13 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { IContact, ContactAction } from '../../types/contact';
-import { URL } from '../../config/constants';
+import {
+  URL,
+  MESSAGE_DELETE_CONTACT_ERROR,
+  MESSAGE_ADD_CONTACT_ERROR,
+  MESSAGE_EDIT_CONTACT_ERROR,
+  MESSAGE_GET_CONTACT_ERROR,
+} from '../../config/constants';
 
 export const addContact = (payload: IContact) =>
   async function (dispatch: Dispatch) {
@@ -15,7 +21,7 @@ export const addContact = (payload: IContact) =>
     } catch (e) {
       dispatch({
         type: ContactAction.ADD_CONTACT_ERROR,
-        payload: 'Can not to add contact',
+        payload: MESSAGE_ADD_CONTACT_ERROR,
       });
     }
   };
@@ -32,7 +38,7 @@ export const editContact = (payload: IContact) =>
     } catch (e) {
       dispatch({
         type: ContactAction.EDIT_CONTACT_ERROR,
-        payload: 'Can not to edit contact',
+        payload: MESSAGE_EDIT_CONTACT_ERROR,
       });
     }
   };
@@ -48,7 +54,7 @@ export const deleteContact = (payload: IContact) =>
     } catch (e) {
       dispatch({
         type: ContactAction.DELETE_CONTACT_ERROR,
-        payload: 'Can not to delete contact',
+        payload: MESSAGE_DELETE_CONTACT_ERROR,
       });
     }
   };
@@ -61,16 +67,15 @@ export const getContacts = () =>
       });
 
       const response = await axios.get(`${URL}contacts`);
-      setTimeout(() => {
-        dispatch({
-          type: ContactAction.FETCH_GET_CONTACTS_SUCCESS,
-          payload: response.data,
-        });
-      }, 2000);
+
+      dispatch({
+        type: ContactAction.FETCH_GET_CONTACTS_SUCCESS,
+        payload: response.data,
+      });
     } catch (e) {
       dispatch({
         type: ContactAction.FETCH_GET_CONTACTS_ERROR,
-        payload: 'Can not to get contacts',
+        payload: MESSAGE_GET_CONTACT_ERROR,
       });
     }
   };
