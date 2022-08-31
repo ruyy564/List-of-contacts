@@ -24,7 +24,7 @@
 
 ### (delete) /contact/id - delete contact
 
-## Test username
+## Test user for login
 
 ### email:test@yandex.ru
 
