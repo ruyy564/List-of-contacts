@@ -1,11 +1,6 @@
 {
   "users": [
     {
-      "email": "n4564u@yandex.ru",
-      "password": "$2a$10$vZtW5zBYHIeyIlDBg6yftOOxVgltLSmOSzh5JyBGZjK9KGyTVzTdy",
-      "id": 1
-    },
-    {
       "email": "test@yandex.ru",
       "password": "$2a$10$eB5pjamHaaCd04ymUfaktOgN.08SfRDxb1EfR8fIULZvMz3QTVyI2",
       "id": 2
@@ -13,19 +8,29 @@
   ],
   "contacts": [
     {
-      "name": "константинh",
-      "email": "nikgaara@yandex.ru",
+      "name": "kirill2",
+      "email": "gray@yandex.ru",
       "id": 1661884991772
     },
     {
-      "name": "gfhfh",
-      "email": "jghjg",
-      "id": 1661890630937
+      "name": "kate",
+      "email": "orange@yandex.ru",
+      "id": 1661884991773
     },
     {
-      "name": "jhjhbjhлл",
-      "email": "test@yandex.ru",
-      "id": 1661897508223
+      "name": "alex",
+      "email": "fox@yandex.ru",
+      "id": 1661884991774
+    },
+    {
+      "name": "john",
+      "email": "kit@yandex.ru",
+      "id": 1661884991775
+    },
+    {
+      "name": "nastya",
+      "email": "nastya@yandex.ru",
+      "id": 1661932055449
     }
   ]
 }

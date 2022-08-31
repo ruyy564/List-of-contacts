@@ -6,20 +6,19 @@ const initUser = user ? JSON.parse(user) : null;
 
 const initialState: IUserState = {
   user: initUser,
-  loading: false,
   error: null,
 };
 
 const userReducer = (state = initialState, action: IUserAction): IUserState => {
   switch (action.type) {
     case UserAction.FETCH_LOGIN:
-      return { user: null, loading: true, error: null };
+      return { user: null, error: null };
     case UserAction.FETCH_LOGIN_SUCCESS:
-      return { loading: false, error: null, user: { ...action.payload } };
+      return { error: null, user: { ...action.payload } };
     case UserAction.FETCH_LOGIN_ERROR:
-      return { loading: false, error: action.payload, user: null };
+      return { error: action.payload, user: null };
     case UserAction.FETCH_LOGOUT:
-      return { user: null, loading: false, error: null };
+      return { user: null, error: null };
     default:
       return state;
   }

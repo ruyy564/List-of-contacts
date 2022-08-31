@@ -1,13 +1,13 @@
 import { Modal, Stack } from '@mui/material';
 import { style } from '../muiComponent/Style';
 
-interface IModalContact {
+interface ModalContactProps {
   children: React.ReactNode;
   open: boolean;
   handleClose: () => void;
 }
 
-const ModalContact = ({ children, open, handleClose }: IModalContact) => {
+const ModalContact = ({ children, open, handleClose }: ModalContactProps) => {
   return (
     <Modal open={open} onClose={handleClose}>
       <Stack sx={style} direction="column" spacing={2} p={2} mt={2}>

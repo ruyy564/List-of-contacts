@@ -5,6 +5,7 @@ import useActions from '../hooks/useActions';
 interface MenuProps {
   searchHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 const Menu = ({ searchHandler }: MenuProps) => {
   const { fetchLogout } = useActions();
 

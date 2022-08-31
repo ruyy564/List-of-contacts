@@ -4,9 +4,12 @@ interface IUserPayload {
   email: string;
 }
 
+export interface IFormUser {
+  email: string;
+  password: string;
+}
 export interface IUserState {
   user: IUserPayload | null;
-  loading: boolean;
   error: null | string;
 }
 

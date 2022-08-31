@@ -11,7 +11,6 @@ interface IUser {
 export const fetchLogin = (payload: IUser) => async (dispatch: Dispatch) => {
   try {
     dispatch({ type: UserAction.FETCH_LOGIN });
-
     const response = await axios.post(`${URL}login`, payload);
     const { accessToken, user } = response.data;
 

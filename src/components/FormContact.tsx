@@ -1,26 +1,34 @@
 import { Button, TextField, Typography, ButtonGroup } from '@mui/material';
 import Modal from './Modal';
 
-interface IFormContact {
+interface FormContactProps {
   open: boolean;
   form: any;
+  errors: string[];
   handleClose: () => void;
   saveContact: () => void;
   changeFormHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormContact: React.FC<IFormContact> = ({
+const FormContact = ({
   open,
   handleClose,
   form,
-  saveContact,
+  errors,
   changeFormHandler,
-}) => {
+  saveContact,
+}: FormContactProps) => {
   return (
     <Modal open={open} handleClose={handleClose}>
+      {errors.map((error, index) => (
+        <Typography key={index} component="h1" variant="h5" color="error">
+          {error}
+        </Typography>
+      ))}
       <Typography id="modal-modal-title" variant="h6" component="h2">
         Input a data about new contact
       </Typography>
+
       <TextField
         id="name"
         label="Name"
@@ -36,14 +44,7 @@ const FormContact: React.FC<IFormContact> = ({
         onChange={changeFormHandler}
       />
       <ButtonGroup>
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={() => {
-            saveContact();
-            handleClose();
-          }}
-        >
+        <Button variant="contained" fullWidth onClick={saveContact}>
           Accept
         </Button>
         <Button

@@ -16,7 +16,7 @@ const SearchContact = ({ searchHandler }: SearchContactProps) => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        placeholder="Search name…"
         inputProps={{ 'aria-label': 'search' }}
         onChange={searchHandler}
       />

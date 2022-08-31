@@ -1,24 +1,21 @@
 import { Typography, Stack, ButtonGroup } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import ButtonEdit from './ButtonEdit';
 import ButtonDelete from './ButtonDelete';
-import { deleteContact } from '../store/actions/actionCreatorContact';
+import { IContact } from '../types/contact';
 
-interface IContact {
-  contact: {
-    id: number;
-    name: string;
-    email: string;
-  };
+interface ContactProps {
+  contact: IContact;
   handleOpen: () => void;
-  initForm: (contact: any) => void;
+  initForm: (contact: IContact) => void;
+  deleteContact: (contact: IContact) => void;
 }
 
-const Contact = ({ contact, handleOpen, initForm }: IContact) => {
-  const dispatch = useDispatch();
-  const deleteC = (contact: any) => {
-    dispatch(deleteContact(contact));
-  };
+const Contact = ({
+  contact,
+  handleOpen,
+  initForm,
+  deleteContact,
+}: ContactProps) => {
   return (
     <Stack
       direction="row"
@@ -41,11 +38,7 @@ const Contact = ({ contact, handleOpen, initForm }: IContact) => {
             handleOpen();
           }}
         />
-        <ButtonDelete
-          onClick={() => {
-            deleteC(contact);
-          }}
-        />
+        <ButtonDelete onClick={deleteContact.bind(null, contact)} />
       </ButtonGroup>
     </Stack>
   );

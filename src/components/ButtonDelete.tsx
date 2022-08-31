@@ -1,11 +1,11 @@
 import Button from './Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-interface IButton {
-  onClick?: () => void;
+interface ButtonDeleteProps {
+  onClick: () => void;
 }
 
-const ButtonDelete = ({ onClick }: IButton) => {
+const ButtonDelete = ({ onClick }: ButtonDeleteProps) => {
   return (
     <Button title={'Delete'} color="error" onClick={onClick}>
       <DeleteIcon />

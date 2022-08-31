@@ -1,11 +1,11 @@
 import Button from './Button';
 import EditIcon from '@mui/icons-material/Edit';
 
-interface IButton {
-  onClick?: () => void;
+interface ButtonEditProps {
+  onClick: () => void;
 }
 
-const ButtonEdit = ({ onClick }: IButton) => {
+const ButtonEdit = ({ onClick }: ButtonEditProps) => {
   return (
     <Button title={'Edit'} onClick={onClick}>
       <EditIcon />

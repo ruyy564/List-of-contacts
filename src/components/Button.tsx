@@ -1,6 +1,6 @@
 import { IconButton, Tooltip } from '@mui/material';
 
-interface IButton {
+interface ButtonProps {
   title: string;
   color?:
     | 'inherit'
@@ -13,10 +13,10 @@ interface IButton {
     | 'warning'
     | undefined;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-const Button = ({ title, color, children, onClick }: IButton) => {
+const Button = ({ title, color, children, onClick }: ButtonProps) => {
   return (
     <Tooltip title={title}>
       <IconButton color={color} onClick={onClick}>
