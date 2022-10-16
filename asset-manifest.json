@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/List-of-contacts/static/js/main.4ef0d28c.js",
+    "main.js": "/List-of-contacts/static/js/main.d4994d9c.js",
     "index.html": "/List-of-contacts/index.html",
-    "main.4ef0d28c.js.map": "/List-of-contacts/static/js/main.4ef0d28c.js.map"
+    "main.d4994d9c.js.map": "/List-of-contacts/static/js/main.d4994d9c.js.map"
   },
   "entrypoints": [
-    "static/js/main.4ef0d28c.js"
+    "static/js/main.d4994d9c.js"
   ]
 }
